@@ -18,3 +18,14 @@
 #include <iostream>
 using namespace std;
 
+class Matrix
+{
+private:
+	int rows, columns;
+	double** matrix;
+
+public:
+	Matrix();
+	Matrix(int rows, int columns);
+
+};
