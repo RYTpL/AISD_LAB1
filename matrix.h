@@ -37,5 +37,9 @@ public:
 	friend Matrix operator * (double h, Matrix matrix);
 	friend Matrix operator / (double h, Matrix matrix);
 	friend std::ostream& operator<< (std::ostream& out, const Matrix& matrix);
-
+	int GetRows() const;
+	int GetCols() const;
+	int tr();
+	void CreateMatrixForCheck();
+	void CheckTheDeterminant();
 };
