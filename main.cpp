@@ -28,16 +28,16 @@ int get_key()
 
 int menu1()
 {
-    cout << "\nКласс Матрицы.\n\n"
-        "1 - Посмотреть/изменить исследуемые матрицы.\n"
-        "2 - Сложение матриц\n"
-        "3 - Разность матриц\n"
-        "4 - Произведение матриц\n"
-        "5 - Умножение матрицы на скаляр\n"
-        "6 - Деление матрицы на скаляр\n"
-        "7 - Вычисление следа матрицы\n"
-        "8 - Проверка векторов на компланарность\n\n"
-        "Выход: Esc";
+    cout << "\nMatrix Class.\n\n"
+        "1 - View/edit the studied matrices.\n"
+        "2 - Matrix Addition(+)\n"
+        "3 - Matrix difference(-)\n"
+        "4 - multiplication matrix(*)\n"
+        "5 - Multiplying a matrix by a scalar\n"
+        "6 - Dividing a matrix by a scalar\n"
+        "7 - Calculating the trace of the matrix\n"
+        "8 - Checking vectors for coplanarity\n\n"
+        "Exit: Esc";
 
 
     while (true)
@@ -51,7 +51,7 @@ int menu1()
 int menu2()
 {
     cout << "\n\n";
-    cout << "Продолжить: Enter";
+    cout << "Resume: Enter";
     while (true)
     {
         int key = get_key();
@@ -61,7 +61,7 @@ int menu2()
 
 int menu3()
 {
-    cout << "1 - да\n2 - нет";
+    cout << "1 - Yes\n2 - No";
     while (true)
     {
         int key = get_key();
@@ -118,7 +118,7 @@ double double_checker()
         if (check == true) break;
         else
         {
-            cout << "  Неверный формат данных! Повторите попытку: ";
+            cout << "  Invalid sitax! Try again: ";
         }
     }
     double data = (double)atof(n_data);
@@ -175,7 +175,7 @@ int int_checker()
         if (check == true) break;
         else
         {
-            printf("  Неверный формат данных! Повторите попытку: ");
+            printf("  Invalid sitax! Try again: ");
         }
     }
     int data = (int)atoi(n_data);
@@ -211,19 +211,19 @@ int main(int argc, char* argv[])
         case 27: return 0;
         case 49: {
             system("cls");
-            cout << "\tИсследуемые матрицы:\n\n";
+            cout << "\tInvestigated matrices:\n\n";
             cout << "A:\n" << A << endl;
             cout << "B:\n" << B;
 
-            cout << "\n\nХотите изменить матрицы?" << endl;
+            cout << "\n\nDo you want to change the matrices?" << endl;
             int m3 = menu3();
             switch (m3) {
             case 49: {
                 system("cls");
-                cout << "\n--------Задание матрицы А--------" << endl;
+                cout << "\n--------Setting the matrix A--------" << endl;
                 A.EnterMatrix();
 
-                cout << "\n--------Задание матрицы B--------" << endl;
+                cout << "\n--------Setting the matrix B--------" << endl;
                 B.EnterMatrix();
 
                 break;
@@ -237,7 +237,7 @@ int main(int argc, char* argv[])
         }
         case 50: {
             system("cls");
-            cout << "\tСложение матриц.\n\n";
+            cout << "\tMatrix Addition.\n\n";
             bool check = 0;
             try {
                 C = A + B;
@@ -257,7 +257,7 @@ int main(int argc, char* argv[])
         }
         case 51: {
             system("cls");
-            cout << "\tРазность матриц.\n\n";
+            cout << "\tMatrix difference.\n\n";
             bool check = 0;
             try {
                 C = A - B;
@@ -278,7 +278,7 @@ int main(int argc, char* argv[])
         }
         case 52: {
             system("cls");
-            cout << "\tУмножение матриц.\n\n";
+            cout << "\tmultiplication matrix.\n\n";
             bool check = 0;
             try {
                 C = A * B;
@@ -299,9 +299,9 @@ int main(int argc, char* argv[])
         }
         case 53: {
             system("cls");
-            cout << "\tУмножение матрицы на скаляр.\n\n";
+            cout << "\tMultiplying a matrix by a scalar.\n\n";
             double a;
-            cout << "Введите значение (скаляр): ";
+            cout << "Enter a value (scalar): ";
             a = double_checker();
             cout << "A * a:\n\n" << endl;
             cout << A << "\n *\n\n " << a << "\n\n = \n\n";
@@ -312,9 +312,9 @@ int main(int argc, char* argv[])
         }
         case 54: {
             system("cls");
-            cout << "\tДеление матрицы на скаляр.\n\n";
+            cout << "\tDividing a matrix by a scalar.\n\n";
             double a;
-            cout << "Введите значение (скаляр): ";
+            cout << "Enter a value (scalar): ";
             a = double_checker();
             //  cin.get();
             cout << "A \ a:\n\n" << endl;
@@ -324,20 +324,20 @@ int main(int argc, char* argv[])
 
             break;
         }
-        /*case 55: {
+        case 55: {
               system("cls");
-              cout << "\tВычисление следа матрицы.\n\n";
+              cout << "\tCalculating the trace of the matrix.\n\n";
               cout << "Tr(A) = " << A.tr();
               break;
-          }*/
-          /*case 56: {
-              system("cls");
-              cout << "Проверка 3 векторов на компланарность" << endl;
-              Matrix test;
-              test.CreateMatrixForCheck();
-              test.CheckTheDeterminant();
-               break;
-          }*/
+          }
+        case 56: {
+            system("cls");
+            cout << "Checking vectors for coplanarity." << endl;
+            Matrix test;
+            test.CreateMatrixForCheck();
+            test.CheckTheDeterminant();
+            break;
+          }
         }
         while (true)
         {

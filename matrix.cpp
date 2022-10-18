@@ -31,10 +31,10 @@ Matrix::Matrix() {
 Matrix::Matrix(int rows, int columns) {
     if (rows > 0)
         this->rows = rows;
-    else throw "Недопустимое значение!";
+    else throw "Invalid value!";
     if (columns > 0)
         this->columns = columns;
-    else throw "Недопустимое значение!";
+    else throw "Invalid value!";
 
     matrix = new double* [rows];
     for (int i = 0; i < rows; i++)
@@ -57,17 +57,18 @@ int Matrix::tr()
     {
         for (int j = 0; j < columns; j++)
         {
-            if (i = j)
+            if (i == j)
             {
                 result += matrix[i][j];
             }
         }
     }
+    return result;
 }
 double& Matrix::operator () (int i, int j) {
     if ((i >= 0) && (i < rows) && (j >= 0) && (j < columns))
         return matrix[i][j];
-    else throw "Некорректные значения индексов!";
+    else throw "Incorrect index values!";
 }
 Matrix Matrix::operator + (const Matrix& rhs) {
     if ((rows == rhs.rows) && (columns == rhs.columns)) {
@@ -77,7 +78,7 @@ Matrix Matrix::operator + (const Matrix& rhs) {
                 result.matrix[i][j] = matrix[i][j] + rhs.matrix[i][j];
         return result;
     }
-    throw "Размерности матриц не совпадают! Сложение матриц с разными размерностями недопустимо!";
+    throw "The dimensions of the matrices do not match! Addition of matrices with different dimensions is unacceptable!";
 }
 Matrix Matrix::operator - (const Matrix& rhs) {
     if ((rows == rhs.rows) && (columns == rhs.columns)) {
@@ -87,7 +88,7 @@ Matrix Matrix::operator - (const Matrix& rhs) {
                 result.matrix[i][j] = matrix[i][j] - rhs.matrix[i][j];
         return result;
     }
-    throw "Размерности матриц не совпадают! Вычитание матриц с разными размерностями недопустимо!";
+    throw "The dimensions of the matrices do not match! Subtraction of matrices with different dimensions is unacceptable!";
 }
 Matrix Matrix::operator * (const Matrix& rhs) {
     if (columns == rhs.rows) {
@@ -101,7 +102,7 @@ Matrix Matrix::operator * (const Matrix& rhs) {
                     result.matrix[i][j] += matrix[i][k] * rhs.matrix[k][j];
         return result;
     }
-    throw "Матрицы не могут быть перемножены! Недопустимая размерность!";
+    throw "Matrices cannot be multiplied! Invalid dimension!";
 }
 Matrix Matrix::operator * (const double h) {
     Matrix result(rows, columns);
@@ -122,16 +123,16 @@ void Matrix::EnterMatrix() {
         delete[] matrix[i];
     delete[] matrix;
 
-    cout << "Введите размерность матрицы:" << endl;
-    cout << "Количество строк: ";
+    cout << "Enter the dimension of the matrix:" << endl;
+    cout << "Number of rows: ";
     int newRows = int_checker();
-    cout << "Количество столбцов: ";
+    cout << "Number of columns: ";
     int newColumns = int_checker();
 
     Matrix newMatrix(newRows, newColumns);
     for (int i = 0; i < newRows; i++)
         for (int j = 0; j < newColumns; j++) {
-            cout << "Ячейка (" << i << ", " << j << ") = ";
+            cout << "Cell (" << i << ", " << j << ") = ";
             newMatrix.matrix[i][j] = double_checker();
         }
 
@@ -168,19 +169,19 @@ void Matrix::CreateMatrixForCheck() {
     int* a = new int [3];
     int* b = new int [3];
     int* c = new int [3];
-    cout << "ВВедите вектор а" << endl;
+    cout << "Enter a vector а" << endl;
     for (int i = 0; i < 3; i++)
     {
         cout << "a(" << i << ") = ";
         a[i] = double_checker();
     }
-    cout << "ВВедите вектор в" << endl;
+    cout << "Enter a vector в" << endl;
     for (int i = 0; i < 3; i++)
     {
         cout << "a(" << i << ") = ";
         b[i] = double_checker();
     }
-    cout << "ВВедите вектор с" << endl;
+    cout << "Enter a vector с" << endl;
     for (int i = 0; i < 3; i++)
     {
         cout << "a(" << i << ") = ";
@@ -213,13 +214,13 @@ void Matrix::CheckTheDeterminant() {
     int d = matrix[0][0] * matrix[1][1] * matrix[2][2] + matrix[0][1] * matrix[1][2] * matrix[2][0]
         + matrix[1][0] * matrix[2][1] * matrix[0][2] - matrix[2][0] * matrix[1][1] * matrix[0][2] -
         matrix[2][1] * matrix[1][2] * matrix[0][0] - matrix[1][0] * matrix[0][1] * matrix[2][2];
-    if (d = 0)
+    if (d == 0)
     {
-        cout << "определитель матрицы =0, векторы компланарны" << endl;
+        cout << "the determinant of the matrix = 0, the vectors are coplanar" << endl;
     }
     else
     {
-        cout << "векторы некомпланарны, так как определитель матрицы не равен нулю" << endl;
+        cout << "the vectors are non-planar, since the determinant of the matrix is" << d << endl;
     }
 }
     
